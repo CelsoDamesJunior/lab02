@@ -1,24 +1,4 @@
-/*
-var verificarPalindromo = () => {
-    let texto = document.getElementById("frase").value;
-    let textoList = texto.split(""); //transformar string => array
-    let textoInvertidoList = [];
-    textoList.forEach((letra)=>{
-            textoInvertidoList.unshift(letra); //unshift acrescenta elementos no início do array.
-    });
-    let paragrafo = document.getElementById("resposta");
-    let resp = "";
-    if(textoInvertidoList.join("") == texto){ //transformar array => string e testar
-        resp =`O texto <q><strong>${texto}</strong></q> é um palíndromo`}
-    else{
-        resp = `O texto <q><strong>${texto}</strong></q>  não é um palíndromo`
-        }
-        paragrafo.innerHTML = resp;
-    }
-window.onload = function (){
-    let btTestar = document.getElementById("testar");
-    btTestar.addEventListener("click",verificarPalindromo);
-}*/
+
 function inverteString(){
     let texto = document.getElementById("stringparainverter").value;
     let textoInvertido=texto.split('').reverse().join('');
@@ -52,6 +32,26 @@ function contagemString(){
     let respostacontagemtexto = document.getElementById("respostacontagem");
     respostacontagemtexto.innerHTML = Object.entries(respostacontagem);
 }
+function Substistring(){
+    let fraseprocura =document.getElementById("fraseparaprocurar").value;
+    let frasesubstituir = document.getElementById("fraseparasubstituir").value;
+    let fraseparaprosub = document.getElementById("fraseparaprosub").value;
+    let aux=fraseprocura;
+    let substituto = fraseparaprosub.replace(fraseprocura,frasesubstituir);
+    let respostaprocsubtexto = document.getElementById("respostaprocsub");
+    respostaprocsubtexto.innerHTML = substituto;
+}
+function Datecalc(){
+    let datanascimento1 =document.getElementById("datebase").value;
+    let datanascimento2 =new Date(datanascimento1);
+    let horaagora = new Date();
+    const diff = Math.abs(horaagora.getTime() - datanascimento2.getTime()); // Subtrai uma data pela outra
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    console.log(days);
+    let respostadatetexto = document.getElementById("respostadate");
+    respostadatetexto.innerHTML = days;
+}
+
 window.onload = function (){
     let btTestarinversao = document.getElementById("testarinversao");
     btTestarinversao.addEventListener("click",inverteString);
@@ -61,5 +61,11 @@ window.onload = function (){
 
     let btContagemString = document.getElementById("testarcontagem");
     btContagemString.addEventListener("click",contagemString);
+
+    let btExecutaSub = document.getElementById("executasub");
+    btExecutaSub.addEventListener("click",Substistring);
+
+    let btDatecalc = document.getElementById("executadatebase");
+    btDatecalc.addEventListener("click",Datecalc);
 }
 
